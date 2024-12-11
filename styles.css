@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  background-color: rgb(102, 0, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 500px;
+  height: 650px;
+  max-width: 550px;
+  padding: 10px;
+  border: 1px solid rgb(39, 12, 189);
+  border-radius: 4px;
+  margin: 15px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.valores {
+  width: 100%;
+  margin-left: 30px;
+}
+
+h3 {
+  color: rgb(0, 255, 0);
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.valores {
+  width: 100%;
+}
+
+.opcoes {
+  margin-bottom: 5px;
+  width: 100%;
+  height: 30px;
+  cursor: pointer;
+}
+
+.valores input {
+  background-color: transparent;
+  color: #fff;
+  border-radius: 2px;
+  width: 70%;
+  height: 30px;
+  padding: 10px;
+  border: 2px solid aliceblue;
+  outline: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.valores input::placeholder {
+  color: #fff;
+  font-size: 13px;
+}
+
+.resultado {
+  position: absolute;
+  bottom: 0;
+  margin-left: 30px;
+  margin-bottom: 5px;
+}
+
+.resultado p {
+  font-weight: 500;
+}
+
+.resultado p span {
+  color: rgb(0, 255, 0);
+}
+
+.ganhos,
+.perdas {
+  margin-left: 30px;
+}
+
+.ganhos {
+  margin-top: 10px;
+}
+
+.apostados {
+  display: flex;
+  flex-direction: column;
+}
+
+.apostados ul {
+  list-style: none;
+  max-height: 350px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.li {
+  margin: 2px;
+  background-color: rgb(48, 9, 221);
+  width: 30%;
+  padding-left: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.ganhou {
+  color: #21cf27;
+  font-weight: bold;
+}
+
+.perdeu {
+  color: red;
+  font-weight: bold;
+}
+
+.dot-1 {
+  background-color: green;
+  border: none;
+  border-radius: 50%;
+  width: 9px;
+  height: 9px;
+  margin-left: 3px;
+  position: absolute;
+  left: 60px;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+  top: 6px;
+}
+
+.dot-2 {
+  background-color: red;
+  border: none;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-top: 1px;
+  width: 9px;
+  cursor: pointer;
+  height: 9px;
+  position: absolute;
+  transition: 0.5s ease-in-out;
+  right: 39px;
+  top: 5px;
+}
+
+.dot-3 {
+  background-color: rgb(255, 225, 0);
+  border: none;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-top: 1px;
+  width: 9px;
+  cursor: pointer;
+  height: 9px;
+  transition: 0.5s ease-in-out;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+ul {
+  list-style: none;
+}
+
+hr {
+  margin: 30px 0;
+}
+
+.dot-3:hover {
+  transform: scale(1.1);
+}
+
+.dot-1:hover {
+  transform: scale(1.1);
+}
+
+.dot-2:hover {
+  transform: scale(1.1);
+}

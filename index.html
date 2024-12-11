@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+  <title>Calculador de apostas ff</title>
+</head>
+
+<body>
+
+  <h1 style="text-align: center;">Calculador de Apostas</h1>
+  <div class="container">
+    <section class="valores">
+      <h3>Valor do apostado</h3>
+      <select class="opcoes">
+        <option value="1.90$">1.90$</option>
+        <option value="2.90$">2.90$</option>
+        <option value="5.90$">5.90$</option>
+        <option value="10.90$">10.90$</option>
+        <option value="20.90$">20.90$</option>
+        <option value="50.90$">50.90$</option>
+      </select>
+      <p>Não encontrou o que queria?</p>
+      <input type="text" class="valor-apostado" placeholder="Informe o valor com ponto flutuante. ex: 6.80">
+      <div class="apostados">
+        <ul></ul>
+      </div>
+    </section>
+
+    <section class="ganhos">
+      <p>Ganhou</p>
+      <ul class="ganhou"></ul>
+    </section>
+    <hr>
+    <section class="perdas">
+      <p>Perdeu</p>
+      <ul class="perdeu"></ul>
+    </section>
+    <div class="resultado">
+      <p id="lucro"></p>
+      <p>Valor dividido para dois: <span id="dividido-2">0</span></p>
+      <p>Valor dividido para três: <span id="dividido-3">0</span></p>
+      <p>Valor dividido para quatro: <span id="dividido-4">0</span></p>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
