@@ -2,10 +2,11 @@ const valoresApostados = document.querySelector(".opcoes");
 const valorApostadoAlternativo = document.querySelector(".valor-apostado");
 const apostados = document.querySelector(".apostados ul");
 const ganhos = document.querySelector(".ganhos ul");
+const valoresGanhos = document.querySelectorAll(".ganhou ul li");
 const perdas = document.querySelector(".perdas ul");
-const dividido2 = document.querySelector("#dividido-2");
-const dividido3 = document.querySelector("#dividido-3");
-const dividido4 = document.querySelector("#dividido-4");
+const valoresPerdidos = document.querySelectorAll(".perdeu ul li");
+const calcularBtn = document.querySelector("#calcular");
+const resultado = document.querySelector(".resultado");
 
 function criarLi(valor) {
   let li = document.createElement("li");
@@ -22,16 +23,6 @@ function criarLi(valor) {
 }
 
 let totalApostado = 0;
-function atualizarDivididos() {
-  dividido2.innerHTML = (totalApostado / 2).toFixed(2);
-  dividido3.innerHTML = (totalApostado / 3).toFixed(2);
-  dividido4.innerHTML = (totalApostado / 4).toFixed(2);
-
-  const cor = totalApostado < 0 ? "red" : "#21cf27";
-  dividido2.style.color = cor;
-  dividido3.style.color = cor;
-  dividido4.style.color = cor;
-}
 
 valorApostadoAlternativo.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
@@ -67,37 +58,90 @@ document.addEventListener("click", (e) => {
     const li = e.target.closest("li");
     if (ganhos.contains(li)) {
       alert("Não foi possível realizar a operação");
-      totalApostado = valor;
     }
-    const valor = parseFloat(
-      li.querySelector("p").textContent.replace("$", "")
-    );
-    totalApostado += parseFloat(valor) - 1.8;
-    atualizarDivididos();
+
     ganhos.appendChild(li);
   } else if (e.target.classList.contains("dot-2")) {
     const li = e.target.closest("li");
     if (perdas.contains(li)) {
       alert("Não foi possível realizar a operação");
-      totalApostado = valor;
     }
-    const valor = parseFloat(
-      li.querySelector("p").textContent.replace("$", "")
-    );
-    totalApostado -= valor - 1.8;
-    atualizarDivididos();
     perdas.appendChild(li);
   } else if (e.target.classList.contains("dot-3")) {
     const li = e.target.closest("li");
     if (apostados.contains(li)) {
       alert("Não foi possível realizar a operação");
-      totalApostado = valor;
     }
-    totalApostado -= valor - 1.8;
-    const valor = parseFloat(
-      li.querySelector("p").textContent.replace("$", "")
-    );
-    atualizarDivididos();
     apostados.appendChild(li);
   }
+});
+
+calcularBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const valoresGanhos = document.querySelectorAll(".ganhou li");
+  const valoresPerdidos = document.querySelectorAll(".perdeu li");
+
+  console.log("Ganhos encontrados:", valoresGanhos);
+  console.log("Perdas encontradas:", valoresPerdidos);
+
+  let soma = 0;
+
+  valoresGanhos.forEach((element) => {
+    const valor = parseFloat(element.textContent.trim());
+    console.log("Ganho:", valor);
+    if (!isNaN(valor)) {
+      soma += valor;
+    }
+  });
+
+  valoresPerdidos.forEach((element) => {
+    const valor = parseFloat(element.textContent.trim());
+    console.log("Perda:", valor);
+    if (!isNaN(valor)) {
+      soma -= valor;
+    }
+  });
+
+  console.log("soma resetada", soma);
+
+  // Atualiza o conteúdo do resultado
+  resultado.innerHTML = `
+  <p>Dinheiro bruto: <span class="valor">${soma.toFixed(2)}</span></p>
+  <p>Lucro: <span class="valor lucro">${
+    soma >= 0 ? (soma - 1.8).toFixed(2) : "TOMOU FOI NO CU"
+  }</span></p>
+  <p>Lucro ou dinheiro dividido para 2: <span class="valor">${(
+    (soma - 1.8) /
+    2
+  ).toFixed(2)}</span></p>
+  <p>Lucro ou dinheiro dividido para 3: <span class="valor">${(
+    (soma - 1.8) /
+    3
+  ).toFixed(2)}</span></p>
+  <p>Lucro ou dinheiro dividido para 4: <span class="valor">${(
+    (soma - 1.8) /
+    4
+  ).toFixed(2)}</span></p>
+`;
+
+  // Verifica os valores e aplica a cor
+  const spans = resultado.querySelectorAll(".valor");
+  spans.forEach((span) => {
+    const valor = parseFloat(span.textContent.trim());
+    if (valor < 0) {
+      span.style.color = "red"; // Define cor vermelha para valores negativos
+    } else {
+      span.style.color = "#21cf27";
+    }
+  });
+
+  // Verifica se o lucro é negativo
+  const lucroSpan = document.querySelector(".lucro");
+  console.log("lucro: ", lucroSpan);
+  if (lucroSpan < 0) {
+    lucroSpan.style.color = "red";
+  }
+
+  soma = 0;
 });
