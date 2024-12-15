@@ -207,3 +207,10 @@ hr {
   transform: scale(1.09);
   background-color: #127a16;
 }
+
+@media (max-width: 360px) {
+  .container {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -105,38 +105,41 @@ calcularBtn.addEventListener("click", (e) => {
 
   console.log("soma resetada", soma);
 
-  // Atualiza o conteúdo do resultado
   resultado.innerHTML = `
   <p>Dinheiro bruto: <span class="valor">${soma.toFixed(2)}</span></p>
   <p>Lucro: <span class="valor lucro">${
-    soma >= 0 ? (soma - 1.8).toFixed(2) : "TOMOU FOI NO CU"
+    soma > 0 ? (soma - 1.8).toFixed(2) : soma < 0 ? soma.toFixed(2) : "0"
   }</span></p>
-  <p>Lucro ou dinheiro dividido para 2: <span class="valor">${(
-    (soma - 1.8) /
-    2
+  <p>Lucro ou dinheiro dividido para 2: <span class="valor">${(soma === 0
+    ? 0
+    : soma > 0
+    ? (soma - 1.8) / 2
+    : soma / 2
   ).toFixed(2)}</span></p>
-  <p>Lucro ou dinheiro dividido para 3: <span class="valor">${(
-    (soma - 1.8) /
-    3
+  <p>Lucro ou dinheiro dividido para 3: <span class="valor">${(soma === 0
+    ? 0
+    : soma > 0
+    ? (soma - 1.8) / 3
+    : soma / 3
   ).toFixed(2)}</span></p>
-  <p>Lucro ou dinheiro dividido para 4: <span class="valor">${(
-    (soma - 1.8) /
-    4
+  <p>Lucro ou dinheiro dividido para 4: <span class="valor">${(soma === 0
+    ? 0
+    : soma > 0
+    ? (soma - 1.8) / 4
+    : soma / 4
   ).toFixed(2)}</span></p>
 `;
 
-  // Verifica os valores e aplica a cor
   const spans = resultado.querySelectorAll(".valor");
   spans.forEach((span) => {
     const valor = parseFloat(span.textContent.trim());
     if (valor < 0) {
-      span.style.color = "red"; // Define cor vermelha para valores negativos
+      span.style.color = "red";
     } else {
       span.style.color = "#21cf27";
     }
   });
 
-  // Verifica se o lucro é negativo
   const lucroSpan = document.querySelector(".lucro");
   console.log("lucro: ", lucroSpan);
   if (lucroSpan < 0) {
